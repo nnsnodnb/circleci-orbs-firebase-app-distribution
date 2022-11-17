@@ -60,9 +60,9 @@ steps:
         GOOGLE_APPLICATION_CREDENTIALS: << parameters.service_credentials_file >>
         RELEASE_NOTE: << parameters.release_note >>
         RELEAES_NOTE_FILE: << parameters.release_note_file >>
-        TESTERS: << parameters.testers >>
-        TESTERS_FILE: << parameters.testers_file >>
-        GROUPS: << parameters.groups >>
-        GROUPS_FILE: << parameters.groups_file >>
+        TESTER: << parameters.testers >>
+        TESTER_FILE: << parameters.testers_file >>
+        GROUP: << parameters.groups >>
+        GROUP_FILE: << parameters.groups_file >>
         DEBUG: << parameters.is_debug >>
       command: <<include(scripts/deploy.sh)>>
