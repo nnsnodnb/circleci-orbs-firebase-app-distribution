@@ -51,52 +51,18 @@ steps:
   - run:
       name: Install Firebase Tools
       command: npm install -g firebase-tools
-  - when:
-      condition:
-        not:
-          equal:
-            - ""
-            - << parameters.service_credentials_file >>
-      steps:
-        - run:
-            name: "Setup "
-            command: echo "export GOOGLE_APPLICATION_CREDENTIALS=\"<< parameters.service_credentials_file >>\"" >> "${BASH_ENV}"
   - run:
       name: Deploy to Firebase App Distribution
-      command: |
-        cmd="firebase appdistribution:distribute << parameters.binary_path >>"
-        if [[ -n << parameters.token >>]]; then
-          cmd="${cmd} --token << parameters.token >>"
-        fi
-        if [[ -n << parameters.service_credentials_file >> ]]; then
-          echo
-        fi
-        if [[ -n << parameters.release_note >> ]]; then
-          cmd="${cmd} --release-note << parameters.release_note >>"
-        fi
-        if [[ -n << parameters.release_note_file >> ]]; then
-          cmd="${cmd} --release-note-file << parameters.release_note_file >>"
-        fi
-        if [[ -n << parameters.testers >> ]]; then
-          cmd="${cmd} --testers << parameters.testers >>"
-        fi
-        if [[ -n << parameters.testers_file >> ]]; then
-          cmd="${cmd} --testers_file << parameters.testers_file >>"
-        fi
-        if [[ -n << parameters.groups >> ]]; then
-          cmd="${cmd} --groups << parameters.groups >>"
-        fi
-        if [[ -n << parameters.groups_file >> ]]; then
-          cmd="${cmd} --groups_file << parameters.groups_file >>"
-        fi
-        if [[ << parameters.is_debug >> = true ]]; then
-          cmd="${cmd} --debug"
-        fi
-
-        eval "${cmd}"
-
-        if [[ $? -eq 0 ]]; then
-          echo "Success"
-        else
-          echo "Fail"
-        fi
+      environment:
+        APP: << parameters.app >>
+        BINARY_PATH: << parameters.binary_path >>
+        TOKEN: << paraemters.token >>
+        GOOGLE_APPLICATION_CREDENTIALS: << parameters.service_credentials_file >>
+        RELEASE_NOTE: << parameters.release_note >>
+        RELEAES_NOTE_FILE: << parameters.release_note_file >>
+        TESTERS: << parameters.testers >>
+        TESTERS_FILE: << parameters.testers_file >>
+        GROUPS: << parameters.groups >>
+        GROUPS_FILE: << parameters.groups_file >>
+        DEBUG: << parameters.is_debug >>
+      command: <<include(scripts/deploy.sh)>>
