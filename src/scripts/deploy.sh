@@ -35,7 +35,7 @@ fi
 if [[ "${DEBUG}" = true ]]; then
     cmd="${cmd} --debug"
 
-    echo "${cmd}
+    echo "${cmd}"
 fi
 
 eval "${cmd}"
