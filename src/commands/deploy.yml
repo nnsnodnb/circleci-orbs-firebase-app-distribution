@@ -30,7 +30,7 @@ parameters:
     type: string
     default: ""
     description: "The email addresses of the testers you want to invite. You can specify the testers as a comma-separated list of email addresses."
-  testers-file:
+  testers_file:
     type: string
     default: ""
     description: "The email addresses of the testers you want to invite. You can specify the path to a plain text file containing a comma-separated list of email addresses."
