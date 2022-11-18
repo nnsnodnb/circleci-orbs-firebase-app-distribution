@@ -36,7 +36,9 @@ if [[ "${DEBUG}" = true ]]; then
     cmd="${cmd} --debug"
 fi
 
-if eval "${cmd}"; then
+res=$(eval "${cmd}")
+
+if [[ res -eq 0 ]]; then
     echo "Success"
 else
     echo "Fail"
