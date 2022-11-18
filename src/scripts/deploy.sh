@@ -14,7 +14,8 @@ if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
 fi
 if [[ -n "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
-    echo "export GOOGLE_APPLICATION_CREDENTIALS=\"${GOOGLE_APPLICATION_CREDENTIALS}\"" >> "${BASH_ENV}"
+    echo "${GOOGLE_APPLICATION_CREDENTIALS}"
+    cmd="GOOGLE_APPLICATION_CREDENTIALS ${cmd}"
 fi
 if [[ -n "${RELEASE_NOTE}" ]]; then
     escaped_release_notes=$(escape "${RELEASE_NOTE}")
