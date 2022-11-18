@@ -30,4 +30,5 @@ if eval "${cmd}"; then
     echo "Success"
 else
     echo "Fail"
+    exit 1
 fi

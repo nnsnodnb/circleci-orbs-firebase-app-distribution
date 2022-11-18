@@ -12,11 +12,10 @@ jobs:
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-tests:
     docker:
-      - image: cimg/base:current
+      - image: cimg/node:current
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - firebase-app-distribution/deploy
 workflows:
   test-deploy:
     jobs:
