@@ -46,6 +46,10 @@ parameters:
     type: boolean
     default: false
     description: "A flag you can include to print verbose log output."
+  dry_run:
+    type: boolean
+    default: false
+    description: "Dry run"
 
 steps:
   - run:
@@ -65,4 +69,5 @@ steps:
         GROUP: << parameters.groups >>
         GROUP_FILE: << parameters.groups_file >>
         DEBUG: << parameters.is_debug >>
+        DRY_RUN: << parameters.dry_run >>
       command: <<include(scripts/deploy.sh)>>
