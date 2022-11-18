@@ -56,7 +56,7 @@ steps:
       environment:
         APP: << parameters.app >>
         BINARY_PATH: << parameters.binary_path >>
-        TOKEN: << paraemters.token >>
+        TOKEN: << parameters.token >>
         GOOGLE_APPLICATION_CREDENTIALS: << parameters.service_credentials_file >>
         RELEASE_NOTE: << parameters.release_note >>
         RELEAES_NOTE_FILE: << parameters.release_note_file >>
