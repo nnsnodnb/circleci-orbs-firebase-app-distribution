@@ -34,8 +34,7 @@ if [[ -n "${GROUP_FILE}" ]]; then
 fi
 if [[ "${DEBUG}" = "true" ]]; then
     cmd="${cmd} --debug"
-
-    echo "${cmd}"
 fi
 
+echo "${cmd}"
 eval "${cmd}"
