@@ -13,9 +13,9 @@ fi
 if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
 fi
-if [[ -n "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
-    echo "${GOOGLE_APPLICATION_CREDENTIALS}"
-    cmd="GOOGLE_APPLICATION_CREDENTIALS ${cmd}"
+if [[ -n "${SERVICE_CREDENTIALS_FILE}" ]]; then
+    cp "${SERVICE_CREDENTIALS_FILE}" /tmp/app-distribution-key.json
+    export GOOGLE_APPLICATION_CREDENTIALS="/tmp/app-distribution-key.json"
 fi
 if [[ -n "${RELEASE_NOTE}" ]]; then
     escaped_release_notes=$(escape "${RELEASE_NOTE}")
