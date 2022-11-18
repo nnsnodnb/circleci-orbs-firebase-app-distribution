@@ -57,7 +57,7 @@ steps:
         APP: << parameters.app >>
         BINARY_PATH: << parameters.binary_path >>
         TOKEN: << parameters.token >>
-        GOOGLE_APPLICATION_CREDENTIALS: << parameters.service_credentials_file >>
+        SERVICE_CREDENTIALS_FILE: << parameters.service_credentials_file >>
         RELEASE_NOTE: << parameters.release_note >>
         RELEAES_NOTE_FILE: << parameters.release_note_file >>
         TESTER: << parameters.testers >>
@@ -65,4 +65,5 @@ steps:
         GROUP: << parameters.groups >>
         GROUP_FILE: << parameters.groups_file >>
         DEBUG: << parameters.is_debug >>
+      working_directory: ~/project
       command: <<include(scripts/deploy.sh)>>

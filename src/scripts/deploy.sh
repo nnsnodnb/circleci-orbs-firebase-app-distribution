@@ -8,10 +8,13 @@ function escape {
 
 cmd="firebase appdistribution:distribute ${BINARY_PATH}"
 if [[ -n "${APP}" ]]; then
-	cmd="${cmd} --app ${TOKEN}"
+    cmd="${cmd} --app ${APP}"
 fi
 if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
+fi
+if [[ -n "${SERVICE_CREDENTIALS_FILE}" ]]; then
+    export GOOGLE_APPLICATION_CREDENTIALS="${SERVICE_CREDENTIALS_FILE}"
 fi
 if [[ -n "${RELEASE_NOTE}" ]]; then
     escaped_release_notes=$(escape "${RELEASE_NOTE}")
@@ -32,13 +35,9 @@ fi
 if [[ -n "${GROUP_FILE}" ]]; then
     cmd="${cmd} --groups-file ${GROUP_FILE}"
 fi
-if [[ "${DEBUG}" = true ]]; then
+if [[ "${DEBUG}" = "true" ]]; then
     cmd="${cmd} --debug"
 fi
 
-if eval "${cmd}"; then
-    echo "Success"
-else
-    echo "Fail"
-    exit 1
-fi
+echo "${cmd}"
+eval "${cmd}"
