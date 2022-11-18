@@ -16,8 +16,6 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - firebase-app-distribution/deploy:
-          dry_run: true
 workflows:
   test-deploy:
     jobs:
