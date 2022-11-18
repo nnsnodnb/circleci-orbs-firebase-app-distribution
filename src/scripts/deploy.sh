@@ -8,7 +8,7 @@ function escape {
 
 cmd="firebase appdistribution:distribute ${BINARY_PATH}"
 if [[ -n "${APP}" ]]; then
-	cmd="${cmd} --app ${TOKEN}"
+    cmd="${cmd} --app ${TOKEN}"
 fi
 if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
@@ -34,6 +34,8 @@ if [[ -n "${GROUP_FILE}" ]]; then
 fi
 if [[ "${DEBUG}" = true ]]; then
     cmd="${cmd} --debug"
+
+    echo "${cmd}
 fi
 
 eval "${cmd}"
