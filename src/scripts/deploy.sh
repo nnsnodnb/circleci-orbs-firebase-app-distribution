@@ -1,5 +1,11 @@
 #!/bin/bash -u
 
+function escape {
+    token=$1
+    quoted="${token//\"/\\\"}"
+    echo "${quoted}"
+}
+
 cmd="firebase appdistribution:distribute ${BINARY_PATH}"
 if [[ -n "${APP}" ]]; then
 	cmd="${cmd} --app ${TOKEN}"
@@ -8,7 +14,8 @@ if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
 fi
 if [[ -n "${RELEASE_NOTE}" ]]; then
-    cmd="${cmd} --release-notes ${RELEASE_NOTE}"
+    escaped_release_notes=$(escape "${RELEASE_NOTE}")
+    cmd="${cmd} --release-notes \"${escaped_release_notes}\""
 fi
 if [[ -n "${RELEASE_NOTE_FILE}" ]]; then
     cmd="${cmd} --release-notes-file ${RELEASE_NOTE_FILE}"
