@@ -8,7 +8,7 @@ function escape {
 
 cmd="firebase appdistribution:distribute ${BINARY_PATH}"
 if [[ -n "${APP}" ]]; then
-    cmd="${cmd} --app ${TOKEN}"
+    cmd="${cmd} --app ${APP}"
 fi
 if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
