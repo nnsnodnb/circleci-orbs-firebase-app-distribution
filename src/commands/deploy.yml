@@ -1,0 +1,68 @@
+description: >
+  Deploy to Firebase App Distribution.
+
+parameters:
+  app:
+    type: string
+    default: ""
+    description: "Your app's Firebase App ID."
+  binary_path:
+    type: string
+    default: ""
+    description: "Upload binary's path"
+  token:
+    type: string
+    default: ""
+    description: "A refresh token that's printed when you authenticate your CI environment with the Firebase CLI."
+  service_credentials_file:
+    type: string
+    default: ""
+    description: "Service account file when you authenticate your CI environment with the Firebase CLI."
+  release_note:
+    type: string
+    default: ""
+    description: "Release notes for this build."
+  release_note_file:
+    type: string
+    default: ""
+    description: "Release notes for this build."
+  testers:
+    type: string
+    default: ""
+    description: "The email addresses of the testers you want to invite. You can specify the testers as a comma-separated list of email addresses."
+  testers_file:
+    type: string
+    default: ""
+    description: "The email addresses of the testers you want to invite. You can specify the path to a plain text file containing a comma-separated list of email addresses."
+  groups:
+    type: string
+    default: ""
+    description: "The tester groups you want to invite. Groups are specified using group aliases, which you can look up in the Firebase console. You can specify the groups as a comma-separated list."
+  groups_file:
+    type: string
+    default: ""
+    description: "The tester groups you want to invite. Groups are specified using group aliases, which you can look up in the Firebase console. You can specify the path to a plain text file containing a comma-separated list of group names."
+  is_debug:
+    type: boolean
+    default: false
+    description: "A flag you can include to print verbose log output."
+
+steps:
+  - run:
+      name: Install Firebase Tools
+      command: npm install -g firebase-tools
+  - run:
+      name: Deploy to Firebase App Distribution
+      environment:
+        APP: << parameters.app >>
+        BINARY_PATH: << parameters.binary_path >>
+        TOKEN: << parameters.token >>
+        GOOGLE_APPLICATION_CREDENTIALS: << parameters.service_credentials_file >>
+        RELEASE_NOTE: << parameters.release_note >>
+        RELEAES_NOTE_FILE: << parameters.release_note_file >>
+        TESTER: << parameters.testers >>
+        TESTER_FILE: << parameters.testers_file >>
+        GROUP: << parameters.groups >>
+        GROUP_FILE: << parameters.groups_file >>
+        DEBUG: << parameters.is_debug >>
+      command: <<include(scripts/deploy.sh)>>
