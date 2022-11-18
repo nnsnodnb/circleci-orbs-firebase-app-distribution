@@ -37,10 +37,3 @@ if [[ "${DEBUG}" = true ]]; then
 fi
 
 eval "${cmd}"
-
-if [[ $? -eq 0 ]]; then
-    echo "Success"
-else
-    echo "Fail"
-    exit 1
-fi
