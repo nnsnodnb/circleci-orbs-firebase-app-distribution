@@ -26,12 +26,13 @@ if [[ "${DEBUG}" = true ]]; then
     cmd="${cmd} --debug"
 fi
 
-if [[ "${DRY_RUN}" == true ]]; then
+if [[ "${DRY_RUN}" = true ]]; then
     echo "Execute command: \"${cmd}\""
 else
     if eval "${cmd}"; then
         echo "Success"
     else
         echo "Fail"
+        exit 1
     fi
 fi
