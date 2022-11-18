@@ -65,4 +65,5 @@ steps:
         GROUP: << parameters.groups >>
         GROUP_FILE: << parameters.groups_file >>
         DEBUG: << parameters.is_debug >>
+      working_directory: ~/project
       command: <<include(scripts/deploy.sh)>>
