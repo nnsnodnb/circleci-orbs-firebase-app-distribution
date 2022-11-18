@@ -32,7 +32,7 @@ fi
 if [[ -n "${GROUP_FILE}" ]]; then
     cmd="${cmd} --groups-file ${GROUP_FILE}"
 fi
-if [[ "${DEBUG}" = true ]]; then
+if [[ "${DEBUG}" = "true" ]]; then
     cmd="${cmd} --debug"
 
     echo "${cmd}"
