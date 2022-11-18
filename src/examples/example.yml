@@ -6,8 +6,13 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    firebase-app-distribution: nnsnodnb/firebase-app-distribution@0
   workflows:
     use-my-orb:
       jobs:
-        - <orb-name>/<job-name>
+        - firebase-app-distribution/deploy:
+            app: "YOUR Firebase App ID"
+            binary_path: "./path/to/binary.ipa" # for iOS app
+            groups: "nnsnodnb"
+            release_note: "Working in progress application. Please your feedback!"
+            service_credentials_file: "./path/to/google_service_account.json"
