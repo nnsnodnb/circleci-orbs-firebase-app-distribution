@@ -15,7 +15,15 @@ jobs:
       - image: cimg/node:current
     steps:
       - checkout
-      # Run your orb's commands to validate them.
+      - run:
+          name: Put ipa file
+          command:
+            echo "${IPA_BASE64}" | base64 -d > sample.ipa
+      - firebase-app-distribution/deploy:
+          app: ${FIREBASE_APP}
+          binary_path: sample.ipa
+          groups: default
+          release_note: $(git log -n 10 --pretty=format:"%h %s")
 workflows:
   test-deploy:
     jobs:
