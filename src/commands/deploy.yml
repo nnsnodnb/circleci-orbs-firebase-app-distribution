@@ -57,7 +57,7 @@ steps:
         TOKEN: << parameters.token >>
         SERVICE_CREDENTIALS_FILE: << parameters.service_credentials_file >>
         RELEASE_NOTE: << parameters.release_note >>
-        RELEAES_NOTE_FILE: << parameters.release_note_file >>
+        RELEASE_NOTE_FILE: << parameters.release_note_file >>
         TESTER: << parameters.testers >>
         TESTER_FILE: << parameters.testers_file >>
         GROUP: << parameters.groups >>
