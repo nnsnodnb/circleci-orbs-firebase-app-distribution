@@ -15,7 +15,23 @@ jobs:
       - image: cimg/node:current
     steps:
       - checkout
-      # Run your orb's commands to validate them.
+      - run:
+          name: Put ipa file
+          command: |
+            gpg --quiet --batch --yes --decrypt --passphrase="${GPG_PASSPHASE}" --output sample.ipa ./secrets/f9cc8da7-93d5-4f74-94b6-3b4f20003f70.ipa.gpg
+      - run:
+          name: Setup app-distribution-key.json
+          command: |
+            echo "${GOOGLE_SERVICE_ACCOUNT_JSON}" > /tmp/app-distribution-key.json
+      - run:
+          name: Create release notes
+          command: git log -n 10 --pretty=format:"%h %s" > /tmp/notes.txt
+      - firebase-app-distribution/deploy:
+          app: ${FIREBASE_APP}
+          binary_path: sample.ipa
+          service_credentials_file: /tmp/app-distribution-key.json
+          groups: default
+          release_note_file: /tmp/notes.txt
 workflows:
   test-deploy:
     jobs:
