@@ -19,9 +19,14 @@ jobs:
           name: Put ipa file
           command:
             echo "${IPA_BASE64}" | base64 -d > sample.ipa
+      - run:
+          name: Setup app-distribution-key.json
+          command: |
+            echo "${GOOGLE_SERVICE_ACCOUNT_JSON}" > /tmp/app-distribution-key.json
       - firebase-app-distribution/deploy:
           app: ${FIREBASE_APP}
           binary_path: sample.ipa
+          service_credentials_file: /tmp/app-distribution-key.json
           groups: default
           release_note: $(git log -n 10 --pretty=format:"%h %s")
 workflows:
