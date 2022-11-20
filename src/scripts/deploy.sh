@@ -6,10 +6,7 @@ function escape {
     echo "${quoted}"
 }
 
-cmd="firebase appdistribution:distribute ${BINARY_PATH}"
-if [[ -n "${APP}" ]]; then
-    cmd="${cmd} --app ${APP}"
-fi
+cmd="firebase appdistribution:distribute ${BINARY_PATH} --app ${APP}"
 if [[ -n "${TOKEN}" ]]; then
     cmd="${cmd} --token ${TOKEN}"
 fi

@@ -4,11 +4,9 @@ description: >
 parameters:
   app:
     type: string
-    default: ""
     description: "Your app's Firebase App ID."
   binary_path:
     type: string
-    default: ""
     description: "Upload binary's path"
   token:
     type: string
