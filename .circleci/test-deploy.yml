@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run:
           name: Put ipa file
-          command:
+          command: |
             echo "${IPA_BASE64}" | base64 -d > sample.ipa
       - run:
           name: Setup app-distribution-key.json
