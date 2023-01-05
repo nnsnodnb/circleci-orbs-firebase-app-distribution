@@ -48,7 +48,7 @@ parameters:
 steps:
   - run:
       name: Install Firebase Tools
-      command: npm install -g firebase-tools
+      command: <<include(scripts/install_firebase.sh)>>
   - run:
       name: Deploy to Firebase App Distribution
       environment:
