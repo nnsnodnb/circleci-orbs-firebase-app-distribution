@@ -30,7 +30,7 @@ jobs:
           app: ${FIREBASE_APP}
           binary_path: sample.ipa
           service_credentials_file: /tmp/app-distribution-key.json
-          groups: default
+          groups: "default, test"
           release_note_file: /tmp/notes.txt
 workflows:
   test-deploy:
