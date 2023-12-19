@@ -7,12 +7,23 @@ usage:
   version: 2.1
   orbs:
     firebase-app-distribution: nnsnodnb/firebase-app-distribution@0
-  workflows:
+  jobs:
     use-my-orb:
-      jobs:
+      macos:
+        xcode: "15.1.0"
+      resource_class: macos.m1.medium.gen1
+      steps:
+        - checkout
+        - run:
+            name: Build iOS app
+            command: xcodebuild ... # build your iOS app
         - firebase-app-distribution/deploy:
             app: "YOUR Firebase App ID"
-            binary_path: "./path/to/binary.ipa" # for iOS app
-            groups: "nnsnodnb"
+            binary_path: "./path/to/binary.ipa" # for iOS app path to .ipa file
+            groups: "nnsnodnb" # your group
             release_note: "Working in progress application. Please your feedback!"
             service_credentials_file: "./path/to/google_service_account.json"
+  workflows:
+    deploy:
+      jobs:
+        - use-my-orb
